@@ -1,6 +1,6 @@
 @extends('layouts.helloapp')
 
-@section('title', 'index')
+@section('title', 'Index')
 
 @section('menubar')
     @parent
@@ -9,7 +9,10 @@
 
 @section('content')
     <p>ここが本文のコンテントです。</p>
-    <p>必要なだけ記述します。</p>
+    <ul>
+        @each('components.item', $data, 'item')
+    </ul>
+
 @endsection
 
 @section('footer')

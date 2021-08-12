@@ -8,9 +8,16 @@
 @endsection
 
 @section('content')
-    <p>ここが本文のコンテントです。</p>
-    <p>これは、<middleware>google.com</middleware>へのリンクです。</p>
-    <p>これは、<middleware>yahoo.co.jp</middleware>へのリンクです。</p>
+    <p>{{$msg}}</p>
+    <form action="/hello" method="post">
+        <table>
+            @CSRF
+            <tr><th>name: </th><td><input type="text" name="name"></td></tr>
+            <tr><th>mail: </th><td><input type="mail" name="mail"></td></tr>
+            <tr><th>age: </th><td><input type="text" name="age"></td></tr>
+            <tr><th><input type="submit" value="send"></th></tr>
+        </table>
+    </form>
 @endsection
 
 @section('footer')

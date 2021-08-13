@@ -12,8 +12,8 @@ class HelloController extends Controller
 {
     public function index(Request $request)
     {
-        $items = DB::select('select * from people');
-        return view ('hello.index', ['items' => $items]);
+        $items = DB::table('people')->get();
+        return view('hello.index', ['items' => $items]);
     }
 
     public function post(Request $request)
@@ -69,5 +69,12 @@ class HelloController extends Controller
         $param = ['id' => $request->id];
         DB::delete('delete from people where id = :id', $param);
         return redirect('/hello');
+    }
+
+    public function show(Request $request)
+    {
+        $name = $request->name;
+        $items = DB::table('people')->where('name', 'link', '%' . $name . '%')->orWhere('mail', 'link', '%' . $name . '%')->get();
+        return view('hello.show', ['items' => $items]);
     }
 }
